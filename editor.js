@@ -3,7 +3,7 @@
 const el=id=>document.getElementById(id), sliders=['brightness','contrast','saturation'];
 let photo=null,file=null,source=null,resultUrl=null,version=0,frame=0;
 const status=(ko,en,error=false)=>{el('edit-status').textContent=document.documentElement.lang==='en'?en:ko;el('edit-status').dataset.ko=ko;el('edit-status').dataset.en=en;el('edit-status').classList.toggle('error',error);};
-el('language').addEventListener('change',()=>{const s=el('edit-status');if(s.dataset.ko)s.textContent=s.dataset[el('language').value];});
+el('language').addEventListener('change',()=>{const s=el('edit-status');if(s.dataset.ko)s.textContent=localize(s.dataset.ko);});
 function clearDownload(){if(resultUrl)URL.revokeObjectURL(resultUrl);resultUrl=null;el('edit-download').hidden=true;el('edit-download').removeAttribute('href');}
 function process(canvas,original=false,white=false){
  const ctx=canvas.getContext('2d',{willReadFrequently:true});if(!ctx)throw Error('canvas');ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(photo,0,0,canvas.width,canvas.height);

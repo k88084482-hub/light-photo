@@ -7,3 +7,5 @@ html{scroll-behavior:smooth}.brand-hero{display:grid;grid-template-columns:1.15f
 .header-actions{display:flex;align-items:center;gap:18px}#language{width:auto;min-width:92px;padding:8px 10px;font-size:12px}.tool-heading{border-top:1px solid #dfe6d7}@media(max-width:700px){.header-actions .privacy{display:none}.header-actions{gap:0}.brand-hero h1{font-size:clamp(28px,7vw,36px)}}
 
 .site-footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.site-footer nav{display:flex;gap:18px;flex-wrap:wrap}.site-footer a,.document-page a{color:#45623c}.site-footer a{font-size:12px;font-weight:400}.document-page{max-width:850px;padding-top:35px;padding-bottom:60px;min-height:65vh}.document-page h1{font-size:34px;margin:30px 0}.document-page h2{font-size:20px;margin-top:30px}.document-page p,.document-page li{font-size:15px;line-height:1.9;color:#52614e}.document-page li{margin-bottom:12px}html[lang=ko] .en-copy,html[lang=en] .ko-copy{display:none}
+
+.vi-copy{display:none}html[lang=vi] .vi-copy{display:block}html[lang=vi] .ko-copy,html[lang=vi] .en-copy{display:none}

@@ -4,7 +4,7 @@ const $=id=>document.getElementById(id),canvas=$('retouch-canvas'),overlay=$('ma
 let current=null,original=null,history=[],filename='',downloadUrl=null,busy=false,revision=0,worker=null,drawing=false,last=null;
 const say=(ko,en,error=false)=>{const n=$('retouch-status');n.dataset.ko=ko;n.dataset.en=en;n.textContent=document.documentElement.lang==='en'?en:ko;n.classList.toggle('error',error);};
 function help(){const skin=$('retouch-mode').value==='skin';$('strength-control').hidden=!skin;$('mode-help').textContent=document.documentElement.lang==='en'?(skin?'Paint skin, avoiding eyes and lips, then apply.':'Cover the entire watermark with a small margin, then apply. Simple backgrounds work best.'):(skin?'눈과 입술을 피해 피부를 칠한 뒤 적용하세요.':'워터마크 가장자리까지 조금 넓게 칠한 뒤 적용하세요. 단순한 배경에 적합해요.');}
-$('language').addEventListener('change',()=>{help();const n=$('retouch-status');if(n.dataset.ko)n.textContent=n.dataset[$('language').value];resolution();});help();
+$('language').addEventListener('change',()=>{help();const n=$('retouch-status');if(n.dataset.ko)n.textContent=localize(n.dataset.ko);resolution();});help();
 function resolution(){if(!current)return;$('resolution').textContent=(document.documentElement.lang==='en'?'Editing & download size: ':'작업·다운로드 해상도: ')+canvas.width+' × '+canvas.height+' px';}
 function invalidate(){if(downloadUrl)URL.revokeObjectURL(downloadUrl);downloadUrl=null;$('retouch-download').hidden=true;$('retouch-download').removeAttribute('href');}
 function clearMask(){maskCtx.clearRect(0,0,overlay.width,overlay.height);}
