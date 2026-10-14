@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://light-photo.pages.dev/sitemap.xml
