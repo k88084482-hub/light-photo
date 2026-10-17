@@ -14,7 +14,7 @@ async function sign(value,secret) {
   const key=await crypto.subtle.importKey('raw',enc.encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);
   return Array.from(new Uint8Array(await crypto.subtle.sign('HMAC',key,enc.encode(value))),v=>v.toString(16).padStart(2,'0')).join('');
 }
-export async function handle(request,env,send=fetch) {
+export async function handle(request,env,send=(...args)=>fetch(...args)) {
   const u=new URL(request.url);
   if(!u.pathname.startsWith('/api/youtube-trial/')) return env.ASSETS.fetch(request);
   if(request.method!=='POST') return json({error:'POST만 지원합니다.'},405);
@@ -53,6 +53,6 @@ export async function handle(request,env,send=fetch) {
       return json({status:job.status});
     }
     return json({error:'없는 경로입니다.'},404);
-  }catch(e){const code=/^UPSTREAM_[0-9]{3}$/.test(e.message)?e.message:e.name==='TimeoutError'?'UPSTREAM_TIMEOUT':'UPSTREAM_INVALID';return json({error:'외부 서비스 응답을 확인하지 못했습니다. 새 변환을 반복 요청하지 마세요.',code},502);}
+  }catch(e){const code=/^UPSTREAM_[0-9]{3}$/.test(e.message)?e.message:e.name==='TimeoutError'?'UPSTREAM_TIMEOUT':'UPSTREAM_'+(e.name||'Error')+(/Illegal invocation/i.test(e.message)?'_INVOCATION':/not a function/i.test(e.message)?'_UNSUPPORTED':'');return json({error:'외부 서비스 응답을 확인하지 못했습니다. 새 변환을 반복 요청하지 마세요.',code},502);}
 }
 export default {fetch(request,env){return handle(request,env);}};
