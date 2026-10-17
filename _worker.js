@@ -25,7 +25,7 @@ export async function handle(request,env,send=fetch) {
   try { const raw=await request.text();if(raw.length>4096) return json({error:'요청이 너무 큽니다.'},413);body=JSON.parse(raw); } catch {return json({error:'잘못된 요청입니다.'},400);}
   async function api(path,payload) {
     const res=await send('https://api.socialkit.dev'+path,{method:payload?'POST':'GET',redirect:'error',headers:{'x-access-key':env.SOCIALKIT_API_KEY,'Content-Type':'application/json'},body:payload?JSON.stringify(payload):undefined,signal:AbortSignal.timeout(25000)});
-    if(!res.ok) throw Error('API'); const result=await res.json();if(result.success!==true)throw Error('API');return result.data;
+    if(!res.ok) throw Error('UPSTREAM_'+res.status); const result=await res.json();if(result.success!==true)throw Error('API');return result.data;
   }
   try {
     if(u.pathname.endsWith('/start')) {
@@ -53,6 +53,6 @@ export async function handle(request,env,send=fetch) {
       return json({status:job.status});
     }
     return json({error:'없는 경로입니다.'},404);
-  }catch{return json({error:'외부 서비스 응답을 확인하지 못했습니다. 새 변환을 반복 요청하지 마세요.'},502);}
+  }catch(e){const code=/^UPSTREAM_[0-9]{3}$/.test(e.message)?e.message:e.name==='TimeoutError'?'UPSTREAM_TIMEOUT':'UPSTREAM_INVALID';return json({error:'외부 서비스 응답을 확인하지 못했습니다. 새 변환을 반복 요청하지 마세요.',code},502);}
 }
 export default {fetch(request,env){return handle(request,env);}};
