@@ -30,8 +30,8 @@ const dictionaries = {ko:new Map(),en:new Map(),vi:new Map(vietnamese)};
 const sourceKey = new Map();
 for(const [ko,en] of translations){dictionaries.ko.set(ko,ko);dictionaries.en.set(ko,en);sourceKey.set(ko,ko);sourceKey.set(en,ko);}
 for(const [ko,vi] of vietnamese)sourceKey.set(vi,ko);
-let language = navigator.language.toLowerCase().startsWith('ko')?'ko':navigator.language.toLowerCase().startsWith('vi')?'vi':'en';
-try{const saved=localStorage.getItem('file-drawer-language');if(['ko','en','vi'].includes(saved))language=saved;}catch{}
+let language = document.documentElement.dataset.pageLang || (navigator.language.toLowerCase().startsWith('ko')?'ko':navigator.language.toLowerCase().startsWith('vi')?'vi':'en');
+try{const saved=localStorage.getItem('file-drawer-language');if(!document.documentElement.dataset.pageLang&&['ko','en','vi'].includes(saved))language=saved;}catch{}
 function localize(value){
  const text=value.trim(),key=sourceKey.get(text);let translated=dictionaries[language].get(key);
  const percent=text.match(/^(\d+(?:\.\d+)?)% (?:가벼워졌어요|smaller|nhẹ hơn)$/);

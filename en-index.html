@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-page="index" data-page-lang="en">
+<head><link rel="canonical" href="https://light-photo.pages.dev/en-index"><link rel="alternate" hreflang="ko" href="https://light-photo.pages.dev/"><link rel="alternate" hreflang="en" href="https://light-photo.pages.dev/en-index"><link rel="alternate" hreflang="vi" href="https://light-photo.pages.dev/vi-index"><link rel="alternate" hreflang="x-default" href="https://light-photo.pages.dev/"><meta property="og:title" content="Photo Compressor — JPG, PNG &amp; WebP | File Drawer"><meta property="og:description" content="Compress photos in your browser without uploading image contents. Adjust quality, compare file sizes, and download JPG or WebP images."><meta property="og:url" content="https://light-photo.pages.dev/en-index"><meta property="og:type" content="website"><script src="/locale-nav.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compress photos in your browser without uploading image contents. Adjust quality, compare file sizes, and download JPG or WebP images.">
+  <title>Photo Compressor — JPG, PNG &amp; WebP | File Drawer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js" defer></script>
+  <script src="app.js" defer></script>
+
+<meta name="google-site-verification" content="CD1L2uVo-z4QZvwFuWYsW_CKhf_9nS_hfqZACn8tCME">
+<meta property="og:title" content="File Drawer — Photo Compressor">
+<meta property="og:description" content="사진을 서버에 보내지 않고 브라우저에서 간편하게 압축하세요.">
+<meta property="og:image" content="https://light-photo.pages.dev/file-drawer.png">
+<meta property="og:url" content="https://light-photo.pages.dev/">
+<meta name="google-adsense-account" content="ca-pub-8972609262885372">
+<meta name="naver-site-verification" content="7fdd5ef5d9c67b4507684ed4372656f579f42029"></head>
+<body>
+  <header class="shell header"><a class="brand" href="/en-index"><span class="logo" aria-hidden="true">▤</span><span class="brand-name">File Drawer<small>파일서랍</small></span><span class="beta">BETA</span></a><div class="header-actions"><span class="privacy">● Your photos stay on your device</span><select id="language" aria-label="Language / 언어"><option value="ko">한국어</option><option value="en" selected>English</option><option value="vi">Tiếng Việt</option></select></div></header>
+  <main class="shell"><nav class="tool-nav"><a href="/en-index" aria-current="page">Photo compressor</a><a href="/en-editor">Photo filters &amp; adjustments</a><a href="/en-retouch">Skin smoothing</a><a href="/en-watermark">Watermark removal</a><a href="/en-audio">Extract audio</a><a href="/en-social">Social tools</a></nav>
+    <section class="intro brand-hero"><div class="hero-copy"><span class="eyebrow">SIMPLE PHOTO COMPRESSION</span><h1>Keep the memories,<br><span>lighten the file.</span></h1><p>Your favorite moments. Smaller files.<br>Start with a photo. No installation or signup.</p><a class="hero-link" href="/en-index#image-tool">Compress a photo <span>↘</span></a></div><img class="hero-art" src="file-drawer.png" width="1536" height="1024" alt="A green drawer holding image and music file cards"></section>
+    <section class="tool-heading" id="image-tool"><div><span class="eyebrow">IMAGE TOOL 01</span><h2>Photo compressor</h2><p>Keep the pixel dimensions. Reduce the file size.</p></div><span class="tool-badge">Free · No signup</span></section>
+    <section class="workspace" aria-label="Photo compression tool">
+      <div class="upload-panel">
+        <div class="section-label"><span>01</span> Choose a photo</div>
+        <label class="dropzone" id="dropzone" for="file"><span class="upload-icon">↥</span><strong>Drop your photo here</strong><span>or click to choose a file</span><small>JPG · PNG · WebP / Up to 30 MB</small><input id="file" type="file" accept="image/jpeg,image/png,image/webp"></label>
+        <div class="preview" id="preview" hidden><img id="original" alt="Selected original photo"><div class="file-info"><strong id="filename"></strong><span id="original-info"></span></div><button id="replace" class="text-button" type="button">Choose another photo ↗</button></div>
+        <p class="local-note">⌁ No server uploads. Everything happens in your browser.</p>
+      </div>
+      <div class="settings-panel">
+        <div class="section-label"><span>02</span> Make it smaller</div>
+        <div class="control-heading"><label for="quality">Image quality</label><output id="quality-value" for="quality">80%</output></div>
+        <input id="quality" type="range" min="10" max="100" value="80" step="5">
+        <div class="range-labels"><span>Smaller file</span><span>Higher quality</span></div>
+        <label class="field-label" for="format">File format</label><select id="format"><option value="image/jpeg">JPG — Recommended for photos</option><option value="image/webp">WebP — Supports transparency</option></select>
+        <p class="format-note" id="format-note">Transparent areas will turn white.</p>
+        <button id="compress" class="primary" disabled>Choose a photo first <span>→</span></button>
+        <p id="status" class="status" role="status" aria-live="polite">Choose a photo to see its original size.</p>
+        <div id="result" class="result" hidden><span class="result-label">Compression result</span><strong id="saving"></strong><div class="sizes"><span id="before-size"></span><span>→</span><b id="after-size"></b></div><img id="processed" alt="Compressed photo preview"><a id="download" class="download">Download photo ↓</a><p>Check the preview before downloading.</p></div>
+      </div>
+    </section>
+    <section class="features"><article><span>01 / PRIVATE</span><h2>Your photos stay yours</h2><p>Your photos never leave your device.<br>You stay in control of your files.</p></article><article><span>02 / SIMPLE</span><h2>Simple from the start</h2><p>Choose a photo and adjust the quality.<br>Then download your smaller file.</p></article><article><span>03 / FREE</span><h2>Free and easy</h2><p>No installation or account needed.<br>Use it right in your browser.</p></article></section>
+    <section class="faq"><h2>Good to know</h2><details><summary>Will the pixel dimensions change?</summary><p>The width and height stay the same. We change the encoding quality and format to reduce file size. An already optimized image may produce a larger file.</p></details><details><summary>Which images are supported?</summary><p>Use JPG, PNG, or WebP images up to 30 MB. To protect device memory, images are limited to 24 megapixels and 12,000 pixels per side. Animated WebP files are saved as still images.</p></details><details><summary>Will my original photo change?</summary><p>Your original file is unchanged. The compressed image downloads as a new file. Metadata, such as camera information, may be removed.</p></details></section>
+  <section class="faq seo-help"><h2>How to check a compressed photo</h2><p>Select a photo, reduce quality gradually, and compare the original and output file sizes. Zoom in on small text or faces to check quality.</p><p>An already compressed photo may shrink very little or become larger. Adjust quality or compare JPG and WebP output.</p><p>Use WebP for transparent images. JPG replaces transparent areas with white.</p></section></main><footer class="shell site-footer"><b>File Drawer · 파일서랍</b><nav aria-label="Site information"><a href="/en-about">About</a><a href="/en-guide">Guide</a><a href="/en-contact">Contact</a><a href="/en-privacy">Privacy notice</a></nav><nav class="locale-links" aria-label="Language"><a href="/" lang="ko">한국어</a> · <a href="/en-index" lang="en">English</a> · <a href="/vi-index" lang="vi">Tiếng Việt</a></nav></footer>
+</body>
+</html>
